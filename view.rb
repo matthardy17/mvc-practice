@@ -1,7 +1,8 @@
 class View
   def display(players)
     players.each_with_index do |player, index|
-      puts "#{index + 1} - #{player.name}: #{player.position}"
+      retired = player.retired? ? "Retired" : "Active"
+      puts "#{index + 1} - #{player.name}: #{player.position} - #{retired}"
     end
   end
 
@@ -16,7 +17,7 @@ class View
   end
 
   def ask_user_for_index
-    puts "What is the players index?"
+    puts "Which number player?"
     gets.chomp.to_i - 1
   end
 end

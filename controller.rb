@@ -15,14 +15,23 @@ class Controller
   def create
     name = @view.ask_user_for_player
     position = @view.ask_user_for_position
-    player = Player.new(name, position)
+    retired = false
+    player = Player.new(name, position, retired)
     @squadbook.add_player(player)
+  end
+
+  def update
+    display_players
+    index = @view.ask_user_for_index
+    player = @squadbook.find(index)
+    player.mark_as_retired!
+    @squadbook.save_csv
   end
 
   def destroy
     display_players
-    player_index = @view.ask_user_for_index
-    @squadbook.remove_player(player_index)
+    index = @view.ask_user_for_index
+    @squadbook.remove_player(index)
   end
 
   def display_players
