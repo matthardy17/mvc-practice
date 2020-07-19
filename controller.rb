@@ -1,33 +1,32 @@
 require_relative "view"
-require_relative "recipe"
-require_relative "cookbook"
+require_relative "player"
+require_relative "squadbook"
 
 class Controller
-  def initialize(cookbook)
-    @cookbook = cookbook
+  def initialize(squadbook)
+    @squadbook = squadbook
     @view = View.new
   end
 
   def list
-    display_recipes
+    display_players
   end
 
   def create
-    name = @view.ask_user_for_recipe
-    description = @view.ask_user_for_description
-    recipe = Recipe.new(name, description)
-    @cookbook.add_recipe(recipe)
+    name = @view.ask_user_for_player
+    position = @view.ask_user_for_position
+    player = Player.new(name, position)
+    @squadbook.add_player(player)
   end
 
   def destroy
-    display_recipes
-    recipe_index = @view.ask_user_for_index
-    @cookbook.remove_recipe(recipe_index)
-    display_recipes
+    display_players
+    player_index = @view.ask_user_for_index
+    @squadbook.remove_player(player_index)
   end
 
-  def display_recipes
-    recipes = @cookbook.all
-    @view.display(recipes)
+  def display_players
+    players = @squadbook.all
+    @view.display(players)
   end
 end

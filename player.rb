@@ -1,8 +1,8 @@
 class Player
-  attr_reader :name, :description
+  attr_reader :name, :position
 
-  def initialize(name, description)
+  def initialize(name, position)
     @name = name
-    @description = description
+    @position = position
   end
 end

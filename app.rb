@@ -4,7 +4,7 @@ require_relative 'router'
 
 csv_file   = File.join(__dir__, 'players.csv')
 squadbook   = Squadbook.new(csv_file)
-controller = Controller.new(cookbook)
+controller = Controller.new(squadbook)
 
 router = Router.new(controller)
 
